@@ -23,15 +23,11 @@ __host__ __device__ __forceinline__ T THCRoundUp(T a, T b) {
 }
 
 /**
- * For CC 3.5+, perform a load using __ldg
+ * TODO: For CC 3.5+, perform a load using __ldg
  */
 template <typename T>
 __device__ __forceinline__ T doLdg(const T* p) {
-#if __CUDA_ARCH__ >= 350
-  return __ldg(p);
-#else
   return *p;
-#endif
 }
 
 __device__ __forceinline__ unsigned int ACTIVE_MASK()

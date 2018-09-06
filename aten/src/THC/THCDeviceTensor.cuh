@@ -315,23 +315,15 @@ class THCDeviceSubTensor<TensorType, 0, PtrTraits> {
     return reinterpret_cast<typename PtrTraits<const T>::PtrType>(data_);
   }
 
-  /// Use the texture cache for reads
+  /// TODO: Use the texture cache for reads
   __device__ __forceinline__ typename TensorType::DataType ldg() const {
-#if __CUDA_ARCH__ >= 350
-    return __ldg(data_);
-#else
     return *data_;
-#endif
   }
 
   /// Use the texture cache for reads; cast as a particular type
   template <typename T>
   __device__ __forceinline__ T ldgAs() const {
-#if __CUDA_ARCH__ >= 350
-    return __ldg(dataAs<T>());
-#else
     return as<T>();
-#endif
   }
 
   private:
@@ -431,23 +423,15 @@ class THCDeviceSubTensor {
     return reinterpret_cast<typename PtrTraits<const T>::PtrType>(data_);
   }
 
-  /// Use the texture cache for reads
+  /// TODO: Use the texture cache for reads
   __device__ __forceinline__ typename TensorType::DataType ldg() const {
-#if __CUDA_ARCH__ >= 350
-    return __ldg(data_);
-#else
     return *data_;
-#endif
   }
 
-  /// Use the texture cache for reads; cast as a particular type
+  /// TODO: Use the texture cache for reads; cast as a particular type
   template <typename T>
   __device__ __forceinline__ T ldgAs() const {
-#if __CUDA_ARCH__ >= 350
-    return __ldg(dataAs<T>());
-#else
     return as<T>();
-#endif
   }
 
   /// Returns a tensor that is a view of the SubDim-dimensional slice

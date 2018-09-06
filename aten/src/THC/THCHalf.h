@@ -5,6 +5,7 @@
 
 #include <cuda_fp16.h>
 #include <stdint.h>
+#include <ATen/core/Half.h>
 
 #if CUDA_VERSION >= 9000 || defined(__HIP_PLATFORM_HCC__)
 #ifndef __cplusplus

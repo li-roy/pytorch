@@ -336,17 +336,13 @@ struct TensorCRemainderOp<double> {
 };
 
 template <>
-struct TensorCRemainderOp<half> {
-  __device__ __forceinline__ void operator()(half* out, half* in) {
-    float fout = __half2float(*out);
-    float fin = __half2float(*in);
-    *out = fin != 0 ? __float2half(fout - fin * floorf(fout / fin)) : __float2half(NAN);
+struct TensorCRemainderOp<at::Half> {
+  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in) {
+    *out = *in != 0.f ? *out - *in * floorf(*out / *in) : NAN;
   }
 
-  __device__ __forceinline__ void operator()(half* out, half* in1, half* in2) {
-    float fin1 = __half2float(*in1);
-    float fin2 = __half2float(*in2);
-    *out = fin2 != 0 ? __float2half(fin1 - fin2 * floorf(fin1 / fin2)) : __float2half(NAN);
+  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in1, at::Half* in2) {
+    *out = *in2 != 0.f ? *in1 - *in2 * floorf(*in1 / *in2) : NAN;
   }
 };
 
@@ -384,13 +380,13 @@ struct TensorCFmodOp<double> {
 };
 
 template <>
-struct TensorCFmodOp<half> {
-  __device__ __forceinline__ void operator()(half* out, half* in) {
-    *out = __float2half(fmodf(__half2float(*out), __half2float(*in)));
+struct TensorCFmodOp<at::Half> {
+  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in) {
+    *out = fmodf(*out, *in);
   }
 
-  __device__ __forceinline__ void operator()(half* out, half* in1, half* in2) {
-    *out = __float2half(fmodf(__half2float(*in1), __half2float(*in2)));
+  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in1, at::Half* in2) {
+    *out = fmodf(*in1, *in2);
   }
 };
 
@@ -671,7 +667,7 @@ template <typename real, typename accreal>
 struct TensorDigammaOp {
   __device__ __forceinline__ void
   operator()(real* out, real* in) {
-    using compute_type = typename std::conditional<std::is_same<real, half>::value, accreal, real>::type;
+    using compute_type = typename std::conditional<std::is_same<real, at::Half>::value, accreal, real>::type;
     static const double PI_f64 = 3.14159265358979323846;
     static const compute_type PSI_10 = 2.25175258906672110764;
     static const compute_type A[] = {
@@ -731,7 +727,7 @@ struct TensorDigammaOp {
 
 template <typename real, typename accreal>
 struct TensorTrigammaOp {
-  using compute_type = typename std::conditional<std::is_same<real, half>::value, accreal, real>::type;
+  using compute_type = typename std::conditional<std::is_same<real, at::Half>::value, accreal, real>::type;
   __device__ __forceinline__ void
   operator()(real* out, real* in) {
     const compute_type PI = 3.14159265358979323846;

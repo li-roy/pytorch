@@ -103,14 +103,14 @@ static inline  __device__ void atomicAdd(half *address, half val) {
 
   do {
     assumed = old;
-    at::Half hsum;
+    THCHalf hsum;
     hsum.x = (size_t)address & 2 ? (old >> 16) : (old & 0xffff);
-    hsum = THCNumerics<at::Half>::add(hsum, val);
+    hsum = THCNumerics<THCHalf>::add(hsum, val);
     old = (size_t)address & 2 ? (old & 0xffff) | (hsum.x << 16) : (old & 0xffff0000) | hsum.x;
     old = atomicCAS(address_as_ui, assumed, old);
   } while (assumed != old);
 }
-static inline __device__ void atomicAdd(at::Half *address, at::Half val) {
+static inline __device__ void atomicAdd(THCHalf *address, THCHalf val) {
   atomicAdd(reinterpret_cast<half*>(address), val);
 }
 

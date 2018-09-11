@@ -336,12 +336,12 @@ struct TensorCRemainderOp<double> {
 };
 
 template <>
-struct TensorCRemainderOp<at::Half> {
-  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in) {
+struct TensorCRemainderOp<THCHalf> {
+  __device__ __forceinline__ void operator()(THCHalf* out, THCHalf* in) {
     *out = *in != 0.f ? *out - *in * floorf(*out / *in) : NAN;
   }
 
-  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in1, at::Half* in2) {
+  __device__ __forceinline__ void operator()(THCHalf* out, THCHalf* in1, THCHalf* in2) {
     *out = *in2 != 0.f ? *in1 - *in2 * floorf(*in1 / *in2) : NAN;
   }
 };
@@ -380,12 +380,12 @@ struct TensorCFmodOp<double> {
 };
 
 template <>
-struct TensorCFmodOp<at::Half> {
-  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in) {
+struct TensorCFmodOp<THCHalf> {
+  __device__ __forceinline__ void operator()(THCHalf* out, THCHalf* in) {
     *out = fmodf(*out, *in);
   }
 
-  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in1, at::Half* in2) {
+  __device__ __forceinline__ void operator()(THCHalf* out, THCHalf* in1, THCHalf* in2) {
     *out = fmodf(*in1, *in2);
   }
 };
@@ -667,7 +667,7 @@ template <typename real, typename accreal>
 struct TensorDigammaOp {
   __device__ __forceinline__ void
   operator()(real* out, real* in) {
-    using compute_type = typename std::conditional<std::is_same<real, at::Half>::value, accreal, real>::type;
+    using compute_type = typename std::conditional<std::is_same<real, THCHalf>::value, accreal, real>::type;
     static const double PI_f64 = 3.14159265358979323846;
     static const compute_type PSI_10 = 2.25175258906672110764;
     static const compute_type A[] = {
@@ -727,7 +727,7 @@ struct TensorDigammaOp {
 
 template <typename real, typename accreal>
 struct TensorTrigammaOp {
-  using compute_type = typename std::conditional<std::is_same<real, at::Half>::value, accreal, real>::type;
+  using compute_type = typename std::conditional<std::is_same<real, THCHalf>::value, accreal, real>::type;
   __device__ __forceinline__ void
   operator()(real* out, real* in) {
     const compute_type PI = 3.14159265358979323846;

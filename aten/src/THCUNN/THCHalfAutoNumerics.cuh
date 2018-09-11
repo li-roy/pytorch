@@ -12,12 +12,12 @@
 
 // these functions should move to THCNumerics
 
-inline __host__ __device__ at::Half fmaxType(at::Half x, at::Half y) {
-  return THCNumerics<at::Half>::ge(x, y) ? x : y;
+inline __host__ __device__ THCHalf fmaxType(THCHalf x, THCHalf y) {
+  return THCNumerics<THCHalf>::ge(x, y) ? x : y;
 }
 
-inline __host__ __device__ float fmaxType(float x, at::Half y) {
-  return fmaxf(x, ScalarConvert<at::Half, float>::to(y));
+inline __host__ __device__ float fmaxType(float x, THCHalf y) {
+  return fmaxf(x, ScalarConvert<THCHalf, float>::to(y));
 }
 
 inline __host__ __device__ float fmaxType(float x, float y) {

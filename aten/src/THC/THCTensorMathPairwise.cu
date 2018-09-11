@@ -232,18 +232,18 @@ struct TensorRemainderOp<double> {
 };
 
 template <>
-struct TensorRemainderOp<at::Half> {
-  TensorRemainderOp(at::Half v): val(v) {}
+struct TensorRemainderOp<THCHalf> {
+  TensorRemainderOp(THCHalf v): val(v) {}
 
-  __device__ __forceinline__ void operator()(at::Half* out, at::Half* in) {
+  __device__ __forceinline__ void operator()(THCHalf* out, THCHalf* in) {
     *out = *in - val * floorf(*in / val);
   }
 
-  __device__ __forceinline__ void operator()(at::Half* v) {
+  __device__ __forceinline__ void operator()(THCHalf* v) {
     *v = *v - val * floorf(*v / val);
   }
 
-  const at::Half val;
+  const THCHalf val;
 };
 
 template <typename T>

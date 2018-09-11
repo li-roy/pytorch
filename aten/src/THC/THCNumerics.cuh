@@ -155,47 +155,47 @@ struct THCNumerics<int64_t> {
 
 // DEPRECATED: use math functions from std and NumericLimits.cuh
 template <>
-struct THCNumerics<at::Half> {
-  static inline __host__ __device__ at::Half min() { return at::numeric_limits<at::Half>::lowest(); }
-  static inline __host__ __device__ at::Half max() { return at::numeric_limits<at::Half>::max(); }
+struct THCNumerics<THCHalf> {
+  static inline __host__ __device__ THCHalf min() { return at::numeric_limits<at::Half>::lowest(); }
+  static inline __host__ __device__ THCHalf max() { return at::numeric_limits<at::Half>::max(); }
 
-  static inline __host__ __device__ bool lt(at::Half a, at::Half b) { return a < b; }
-  static inline __host__ __device__ bool le(at::Half a, at::Half b) { return a <= b; }
-  static inline __host__ __device__ bool gt(at::Half a, at::Half b) { return a > b; }
-  static inline __host__ __device__ bool ge(at::Half a, at::Half b) { return a >= b; }
-  static inline __host__ __device__ bool eq(at::Half a, at::Half b) { return a == b; }
-  static inline __host__ __device__ bool ne(at::Half a, at::Half b) { return a != b; }
+  static inline __host__ __device__ bool lt(THCHalf a, THCHalf b) { return a < b; }
+  static inline __host__ __device__ bool le(THCHalf a, THCHalf b) { return a <= b; }
+  static inline __host__ __device__ bool gt(THCHalf a, THCHalf b) { return a > b; }
+  static inline __host__ __device__ bool ge(THCHalf a, THCHalf b) { return a >= b; }
+  static inline __host__ __device__ bool eq(THCHalf a, THCHalf b) { return a == b; }
+  static inline __host__ __device__ bool ne(THCHalf a, THCHalf b) { return a != b; }
 
-  static inline __host__ __device__ at::Half exp(at::Half a) { return std::exp(a); }
-  static inline __host__ __device__ at::Half exp10(at::Half a) { return ::exp10(a); }
-  static inline __host__ __device__ at::Half log(at::Half a) { return ::log(a); }
-  static inline __host__ __device__ at::Half log10(at::Half a) { return ::log10(a); }
-  static inline __host__ __device__ at::Half log1p(at::Half a) { return ::log1p(a); }
-  static inline __host__ __device__ at::Half log2(at::Half a) { return ::log2(a); }
-  static inline __host__ __device__ at::Half lgamma(at::Half a) { return ::lgamma(a); }
-  static inline __host__ __device__ at::Half expm1(at::Half a) { return ::expm1(a); }
-  static inline __host__ __device__ at::Half cos(at::Half a) { return ::cos(a); }
-  static inline __host__ __device__ at::Half sin(at::Half a) { return ::sin(a); }
-  static inline __host__ __device__ at::Half sqrt(at::Half a) { return ::sqrt(a); }
-  static inline __host__ __device__ at::Half rsqrt(at::Half a) { return ::rsqrt(a); }
-  static inline __host__ __device__ at::Half ceil(at::Half a) { return ::ceil(a); }
-  static inline __host__ __device__ at::Half floor(at::Half a) { return ::floor(a); }
-  static inline __host__ __device__ at::Half trunc(at::Half a) { return ::trunc(a); }
-  static inline __host__ __device__ at::Half neg(at::Half a) { return -a; }
-  static inline __host__ __device__ at::Half acos(at::Half a) { return ::acos(a); }
-  static inline __host__ __device__ at::Half cosh(at::Half a) { return ::cosh(a); }
-  static inline __host__ __device__ at::Half asin(at::Half a) { return ::asin(a); }
-  static inline __host__ __device__ at::Half sinh(at::Half a) { return ::sinh(a); }
-  static inline __host__ __device__ at::Half tan(at::Half a) { return ::tan(a); }
-  static inline __host__ __device__ at::Half atan(at::Half a) { return ::atan(a); }
-  static inline __host__ __device__ at::Half tanh(at::Half a) { return ::tanh(a); }
-  static inline __host__ __device__ at::Half erf(at::Half a) { return ::erf(a); }
-  static inline __host__ __device__ at::Half erfc(at::Half a) { return ::erfc(a); }
-  static inline __host__ __device__ at::Half erfinv(at::Half a) { return ::erfinv(a); }
-  static inline __host__ __device__ at::Half abs(at::Half a) { return ::abs(a); }
-  static inline __host__ __device__ at::Half round(at::Half a) { return ::round(a); }
+  static inline __host__ __device__ THCHalf exp(THCHalf a) { return std::exp(a); }
+  static inline __host__ __device__ THCHalf exp10(THCHalf a) { return ::exp10(a); }
+  static inline __host__ __device__ THCHalf log(THCHalf a) { return ::log(a); }
+  static inline __host__ __device__ THCHalf log10(THCHalf a) { return ::log10(a); }
+  static inline __host__ __device__ THCHalf log1p(THCHalf a) { return ::log1p(a); }
+  static inline __host__ __device__ THCHalf log2(THCHalf a) { return ::log2(a); }
+  static inline __host__ __device__ THCHalf lgamma(THCHalf a) { return ::lgamma(a); }
+  static inline __host__ __device__ THCHalf expm1(THCHalf a) { return ::expm1(a); }
+  static inline __host__ __device__ THCHalf cos(THCHalf a) { return ::cos(a); }
+  static inline __host__ __device__ THCHalf sin(THCHalf a) { return ::sin(a); }
+  static inline __host__ __device__ THCHalf sqrt(THCHalf a) { return ::sqrt(a); }
+  static inline __host__ __device__ THCHalf rsqrt(THCHalf a) { return ::rsqrt(a); }
+  static inline __host__ __device__ THCHalf ceil(THCHalf a) { return ::ceil(a); }
+  static inline __host__ __device__ THCHalf floor(THCHalf a) { return ::floor(a); }
+  static inline __host__ __device__ THCHalf trunc(THCHalf a) { return ::trunc(a); }
+  static inline __host__ __device__ THCHalf neg(THCHalf a) { return -a; }
+  static inline __host__ __device__ THCHalf acos(THCHalf a) { return ::acos(a); }
+  static inline __host__ __device__ THCHalf cosh(THCHalf a) { return ::cosh(a); }
+  static inline __host__ __device__ THCHalf asin(THCHalf a) { return ::asin(a); }
+  static inline __host__ __device__ THCHalf sinh(THCHalf a) { return ::sinh(a); }
+  static inline __host__ __device__ THCHalf tan(THCHalf a) { return ::tan(a); }
+  static inline __host__ __device__ THCHalf atan(THCHalf a) { return ::atan(a); }
+  static inline __host__ __device__ THCHalf tanh(THCHalf a) { return ::tanh(a); }
+  static inline __host__ __device__ THCHalf erf(THCHalf a) { return ::erf(a); }
+  static inline __host__ __device__ THCHalf erfc(THCHalf a) { return ::erfc(a); }
+  static inline __host__ __device__ THCHalf erfinv(THCHalf a) { return ::erfinv(a); }
+  static inline __host__ __device__ THCHalf abs(THCHalf a) { return ::abs(a); }
+  static inline __host__ __device__ THCHalf round(THCHalf a) { return ::round(a); }
 
-  static inline __host__ __device__ at::Half frac(at::Half a) {
+  static inline __host__ __device__ THCHalf frac(THCHalf a) {
     #ifdef __CUDA_ARCH__
         return a - ::trunc(a);
     #else // __CUDA_ARCH__
@@ -203,15 +203,15 @@ struct THCNumerics<at::Half> {
     #endif
   }
 
-  static inline __host__ __device__ at::Half cinv(at::Half a) { return 1.0f / a; }
-  static inline __host__ __device__ at::Half add(at::Half a, at::Half b) { return a + b; }
-  static inline __host__ __device__ at::Half div(at::Half a, at::Half b) { return a / b; }
-  static inline __host__ __device__ at::Half mul(at::Half a, at::Half b) { return a * b; }
-  static inline __host__ __device__ at::Half sub(at::Half a, at::Half b) { return a - b; }
-  static inline __host__ __device__ at::Half pow(at::Half a, at::Half b) { return ::pow(a, b); }
-  static inline __host__ __device__ at::Half atan2(at::Half a, at::Half b) { return ::atan2(a, b); }
+  static inline __host__ __device__ THCHalf cinv(THCHalf a) { return 1.0f / a; }
+  static inline __host__ __device__ THCHalf add(THCHalf a, THCHalf b) { return a + b; }
+  static inline __host__ __device__ THCHalf div(THCHalf a, THCHalf b) { return a / b; }
+  static inline __host__ __device__ THCHalf mul(THCHalf a, THCHalf b) { return a * b; }
+  static inline __host__ __device__ THCHalf sub(THCHalf a, THCHalf b) { return a - b; }
+  static inline __host__ __device__ THCHalf pow(THCHalf a, THCHalf b) { return ::pow(a, b); }
+  static inline __host__ __device__ THCHalf atan2(THCHalf a, THCHalf b) { return ::atan2(a, b); }
 
-  static inline __host__ __device__ bool isnan(at::Half a) {
+  static inline __host__ __device__ bool isnan(THCHalf a) {
     #ifdef _MSC_VER
       // Windows requires this explicit conversion. The reason is unclear
       // related issue with clang: https://reviews.llvm.org/D37906
@@ -221,7 +221,7 @@ struct THCNumerics<at::Half> {
     #endif
   }
 
-  static inline __host__ __device__ bool isinf(at::Half a) {
+  static inline __host__ __device__ bool isinf(THCHalf a) {
     #ifdef _MSC_VER
       // Windows requires this explicit conversion. The reason is unclear
       // related issue with clang: https://reviews.llvm.org/D37906

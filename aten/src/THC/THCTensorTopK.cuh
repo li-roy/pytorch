@@ -113,10 +113,10 @@ struct TopKTypeConfig<double> {
 };
 
 template <>
-struct TopKTypeConfig<at::Half> {
+struct TopKTypeConfig<THCHalf> {
   typedef uint32_t RadixType;
 
-  static inline __device__ RadixType convert(at::Half v) {
+  static inline __device__ RadixType convert(THCHalf v) {
 #if CUDA_VERSION >= 8000
     RadixType x = __half_as_ushort(v);
     RadixType mask = -((x >> 15)) | 0x8000;
@@ -127,13 +127,13 @@ struct TopKTypeConfig<at::Half> {
 #endif
   }
 
-  static inline __device__ at::Half deconvert(RadixType v) {
+  static inline __device__ THCHalf deconvert(RadixType v) {
 #if CUDA_VERSION >= 8000
     RadixType mask = ((v >> 15) - 1) | 0x8000;
     return __ushort_as_half(v ^ mask);
 #else
     assert(false);
-    return ScalarConvert<int, at::Half>::to(0);
+    return ScalarConvert<int, THCHalf>::to(0);
 #endif
   }
 };

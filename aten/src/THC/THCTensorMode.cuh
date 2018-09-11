@@ -7,33 +7,33 @@
 
 struct ThrustHalfLess
 {
-  __host__ __device__ inline bool operator()(const at::Half& lhs, const at::Half& rhs) {
-    return THCNumerics<at::Half>::lt(lhs, rhs);
+  __host__ __device__ inline bool operator()(const THCHalf& lhs, const THCHalf& rhs) {
+    return THCNumerics<THCHalf>::lt(lhs, rhs);
   }
 };
 
 struct ThrustHalfNotEqualTo
 {
-  __host__ __device__ inline bool operator()(const at::Half& lhs, const at::Half& rhs) {
-    return THCNumerics<at::Half>::ne(lhs, rhs);
+  __host__ __device__ inline bool operator()(const THCHalf& lhs, const THCHalf& rhs) {
+    return THCNumerics<THCHalf>::ne(lhs, rhs);
   }
 };
 
 struct ThrustHalfEqualTo
 {
-  __host__ __device__ inline bool operator()(const at::Half& lhs, const at::Half& rhs) {
-    return THCNumerics<at::Half>::eq(lhs, rhs);
+  __host__ __device__ inline bool operator()(const THCHalf& lhs, const THCHalf& rhs) {
+    return THCNumerics<THCHalf>::eq(lhs, rhs);
   }
 };
 
 struct ThrustHalfEqualToPredicate
 {
-  ThrustHalfEqualToPredicate(at::Half val): val_(val) {}
-  __host__ __device__ inline bool operator()(at::Half x) {
-    return THCNumerics<at::Half>::eq(val_, x);
+  ThrustHalfEqualToPredicate(THCHalf val): val_(val) {}
+  __host__ __device__ inline bool operator()(THCHalf x) {
+    return THCNumerics<THCHalf>::eq(val_, x);
   }
 
-  at::Half val_;
+  THCHalf val_;
 };
 
 template <typename T>

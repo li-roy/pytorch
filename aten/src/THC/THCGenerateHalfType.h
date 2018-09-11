@@ -4,7 +4,7 @@
 
 #include "THCHalf.h"
 
-#define real at::Half
+#define real THCHalf
 #define accreal float
 #define Real Half
 

@@ -1,5 +1,6 @@
 #include "torch/csrc/jit/import.h"
 #include "torch/csrc/jit/serialization.h"
+#include "caffe2/proto/torch_pb.h"
 #include "onnx/onnx_pb.h"
 #include "torch/csrc/jit/ir.h"
 #include "torch/csrc/utils/functional.h"

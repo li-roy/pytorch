@@ -1,6 +1,7 @@
 #include "torch/csrc/jit/export.h"
 #include "torch/csrc/jit/serialization.h"
 #include "torch/csrc/autograd/symbolic.h"
+#include "caffe2/proto/torch_pb.h"
 #include "onnx/onnx_pb.h"
 #include "torch/csrc/onnx/onnx.h"
 
